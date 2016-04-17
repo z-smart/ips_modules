@@ -74,7 +74,7 @@
         * PowerEvent_MeineErsteEigeneFunktion($id);
         *
         */
-        public function Update($id) {
+        public function Update() {
             // Selbsterstellter Code
         }
 		
