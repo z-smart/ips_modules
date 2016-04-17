@@ -1,4 +1,4 @@
-﻿<?
+<?
     // Klassendefinition
     class PowerEvent_Extension extends IPSModule {
  
