@@ -3,7 +3,11 @@
   [
 
     { "type": "Label", "label": "PowerEvent_Extension v0.1 (17.04.2016 09.45Uhr)" },
-    
+    { "type": "Label", "label": "=======================================================================" },
+	
+	{ "type": "SelectVariable", "name" : "CurrentVar", "caption": "Zu überwachender mA Wert"},
+	
+	{ "type": "Label", "label": "=======================================================================" },
 	{ "type": "NumberSpinner", "name": "StandstillTimer", "caption": "Mindestverweildauer im Zustand (in Minuten)" },
 	
 	{ "type": "Label", "label": "Milliampere Grenze zwischen Zustand 1 und Zustand 2" },
@@ -25,22 +29,28 @@
     { "type": "Label", "label": "SMTP-Instanz, welche für den Versand der EMail-Nachrichten verwendet wird:" },
     { "type": "SelectInstance", "name": "SmtpInstanceID", "caption": "SMTP-Instanz" },
     { "type": "Label", "label": "Skript für eigene Benachrichtigungs-Aktion (Sonos, Enigma2-Nachricht, LED blinken, SMS, ...):" },
-    { "type": "SelectScript", "name": "ScriptID", "caption": "Skript" },
+    { "type": "SelectScript", "name": "ScriptID", "caption": "Skript" }
     
   ],
   "actions":
   [
 
-    { "type": "Button", "label": "Update", "onClick": "HMON_Update($id);" },
-    { "type": "Button", "label": "Test-Benachrichtigung", "onClick": "PowerEvent_notify();" }
+    { "type": "Button", "label": "Update", "onClick": "PowerEvent_Update($id);" },
+    { "type": "Button", "label": "Test-Benachrichtigung", "onClick": "PowerEvent_Notify();" }
 
   ],
   "status":
     [
         { "code": 102, "icon": "active", "caption": "PowerEvent_Extension ist aktiv" },
-        { "code": 201, "icon": "error", "caption": "FEHLER - Für Push Nachrichten muss eine WebFront-Instanz ausgewählt werden!" },
-        { "code": 202, "icon": "error", "caption": "FEHLER - Für EMail Nachrichten muss eine EMail-Instanz ausgewählt werden!" },
+        
+		{ "code": 201, "icon": "error", "caption": "FEHLER - Für Push Nachrichten muss eine WebFront-Instanz ausgewählt werden!" },
+        { "code": 202, "icon": "error", "caption": "FEHLER - Für E-Mail Nachrichten muss eine E-Mail-Instanz ausgewählt werden!" },
         { "code": 203, "icon": "error", "caption": "FEHLER - Für eine eigene Aktion muss ein Skript ausgewählt werden!" },
+		
+		{ "code": 210, "icon": "error", "caption": "FEHLER - Milliampere Grenze muß größer 0 und kleiner 16000 sein!" },
+		{ "code": 211, "icon": "error", "caption": "FEHLER - Mindestverweildauer muss zwischen 1 und 10 Minuten liegen!" },
+		
+		{ "code": 220, "icon": "error", "caption": "FEHLER - Keine zu überwachende mA Variabel ausgewählt!" }
     ]
 }
 

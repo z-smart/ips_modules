@@ -3,6 +3,7 @@
 "author": "Matthias Ziolek",  
 "name": "IP-Symcon Module",  
 "url": "www.mziolek.de",  
+"version": "0.1",  
 "build": 0,  
 "date": 0  
 }
