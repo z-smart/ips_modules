@@ -3,22 +3,24 @@
   [
 
     { "type": "Label", "label": "PowerEvent_Extension v0.1 (17.04.2016 09.45Uhr)" },
-    { "type": "Label", "label": "=======================================================================" },
-	
-	{ "type": "SelectVariable", "name" : "CurrentVar", "caption": "Zu überwachender mA Wert"},
+    
+	{ "type": "Label", "label": "=======================================================================" },
+	{ "type": "Label", "label": "zu überwachender mA Wert" },
+	{ "type": "SelectVariable", "name" : "CurrentVar", "caption": "Variable"},
 	
 	{ "type": "Label", "label": "=======================================================================" },
-	{ "type": "NumberSpinner", "name": "StandstillTimer", "caption": "Mindestverweildauer im Zustand (in Minuten)" },
+	{ "type": "Label", "label": "Mindestverweildauer im Zustand" },
+	{ "type": "NumberSpinner", "name": "StandstillTimer", "caption": "Minuten" },
 	
 	{ "type": "Label", "label": "Milliampere Grenze zwischen Zustand 1 und Zustand 2" },
 	{ "type": "IntervalBox", "name": "CurrentBoundary", "caption" : "mA"},
 	
-	{ "type": "ValidationTextBox", "name": "MsgState1", "caption": "Nachricht für Zustand 1" },
+	{ "type": "ValidationTextBox", "name": "MsgState1", "caption": "Nachricht Zustand 1" },
 	{ "type": "CheckBox", "name": "EmailState1", "caption": "Zustand 1 per E-Mail melden" },
 	{ "type": "CheckBox", "name": "PushState1", "caption": "Zustand 1 per Push-Nachricht melden" },
 	{ "type": "CheckBox", "name": "ScriptState1", "caption": "Zustand 1 per Skript melden" },
 	
-    { "type": "ValidationTextBox", "name": "MsgState2", "caption": "Nachricht für Zustand 2" },
+    { "type": "ValidationTextBox", "name": "MsgState2", "caption": "Nachricht Zustand 2" },
 	{ "type": "CheckBox", "name": "EmailState2", "caption": "Zustand 2 per E-Mail melden" },
 	{ "type": "CheckBox", "name": "PushState2", "caption": "Zustand 2 per Push-Nachricht melden" },
 	{ "type": "CheckBox", "name": "ScriptState2", "caption": "Zustand 2 per Skript melden" },
