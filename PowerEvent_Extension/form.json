@@ -29,7 +29,7 @@
 	"actions":
 	[
 		{ "type": "Button", "label": "Update", "onClick": "PowerEvent_Update($id);" },
-		{ "type": "Button", "label": "Test-Benachrichtigung", "onClick": "PowerEvent_Notify();" }
+		{ "type": "Button", "label": "Test-Benachrichtigung", "onClick": "PowerEvent_Notify($id);" }
 	],
 	"status":
 	[
