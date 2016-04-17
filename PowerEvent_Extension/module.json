@@ -1,13 +1,13 @@
 {
-    "id": "{12D244E7-C7A7-4833-BA82-25BAB37235F3}",
-    "name": "PowerEvent_Extension",
-    "type": 3,
-    "vendor": "www.mziolek.de",
-    "aliases":
-    [
-    ],  
-    "parentRequirements": [],
-    "childRequirements": [],
-    "implemented": [],
-    "prefix": "PowerEvent"
+	"id": "{12D244E7-C7A7-4833-BA82-25BAB37235F3}",
+	"name": "PowerEvent_Extension",
+	"type": 3,
+	"vendor": "www.mziolek.de",
+	"aliases":
+	[
+	],  
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "PowerEvent"
 }
