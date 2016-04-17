@@ -1,0 +1,46 @@
+{
+  "elements":
+  [
+
+    { "type": "Label", "label": "PowerEvent_Extension v0.1 (17.04.2016 09.45Uhr)" },
+    
+	{ "type": "NumberSpinner", "name": "StandstillTimer", "caption": "Mindestverweildauer im Zustand (in Minuten)" },
+	
+	{ "type": "Label", "label": "Milliampere Grenze zwischen Zustand 1 und Zustand 2" },
+	{ "type": "IntervalBox", "name": "CurrentBoundary", "caption" : "mA"},
+	
+	{ "type": "ValidationTextBox", "name": "MsgState1", "caption": "Nachricht für Zustand 1" },
+	{ "type": "CheckBox", "name": "EmailState1", "caption": "Zustand 1 per E-Mail melden" },
+	{ "type": "CheckBox", "name": "PushState1", "caption": "Zustand 1 per Push-Nachricht melden" },
+	{ "type": "CheckBox", "name": "ScriptState1", "caption": "Zustand 1 per Skript melden" },
+	
+    { "type": "ValidationTextBox", "name": "MsgState2", "caption": "Nachricht für Zustand 2" },
+	{ "type": "CheckBox", "name": "EmailState2", "caption": "Zustand 2 per E-Mail melden" },
+	{ "type": "CheckBox", "name": "PushState2", "caption": "Zustand 2 per Push-Nachricht melden" },
+	{ "type": "CheckBox", "name": "ScriptState2", "caption": "Zustand 2 per Skript melden" },
+	
+	{ "type": "Label", "label": "=======================================================================" },
+	{ "type": "Label", "label": "WebFront-Instanz, welche für den Versand der Push-Nachrichten verwendet wird (gültige IPS-Subscription notwendig):" },
+    { "type": "SelectInstance", "name": "WebFrontInstanceID", "caption": "WebFront-Instanz" },
+    { "type": "Label", "label": "SMTP-Instanz, welche für den Versand der EMail-Nachrichten verwendet wird:" },
+    { "type": "SelectInstance", "name": "SmtpInstanceID", "caption": "SMTP-Instanz" },
+    { "type": "Label", "label": "Skript für eigene Benachrichtigungs-Aktion (Sonos, Enigma2-Nachricht, LED blinken, SMS, ...):" },
+    { "type": "SelectScript", "name": "ScriptID", "caption": "Skript" },
+    
+  ],
+  "actions":
+  [
+
+    { "type": "Button", "label": "Update", "onClick": "HMON_Update($id);" },
+    { "type": "Button", "label": "Test-Benachrichtigung", "onClick": "PowerEvent_notify();" }
+
+  ],
+  "status":
+    [
+        { "code": 102, "icon": "active", "caption": "PowerEvent_Extension ist aktiv" },
+        { "code": 201, "icon": "error", "caption": "FEHLER - Für Push Nachrichten muss eine WebFront-Instanz ausgewählt werden!" },
+        { "code": 202, "icon": "error", "caption": "FEHLER - Für EMail Nachrichten muss eine EMail-Instanz ausgewählt werden!" },
+        { "code": 203, "icon": "error", "caption": "FEHLER - Für eine eigene Aktion muss ein Skript ausgewählt werden!" },
+    ]
+}
+
