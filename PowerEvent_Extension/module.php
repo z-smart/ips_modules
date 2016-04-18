@@ -77,6 +77,10 @@
         public function Update() {
             // Selbsterstellter Code
 			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentVar: " . $this->ReadPropertyInteger("CurrentVar"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentBoundary: " . $this->ReadPropertyInteger("CurrentBoundary"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","StandstillTimer: " . $this->ReadPropertyInteger("StandstillTimer"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","PushState1: " . $this->ReadPropertyBoolean("PushState1"));
+			
         }
 		
 		public function Notify() {
