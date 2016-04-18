@@ -64,7 +64,7 @@
 			if ((($this->ReadPropertyBoolean("ScriptState1") == true) || ($this->ReadPropertyBoolean("ScriptState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == "")) $this->SetStatus(203);
 			
 			if ($this->ReadPropertyInteger("CurrentVar") == "" ) $this->SetStatus(220);
-			
+			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentVar: "+$this->ReadPropertyInteger("CurrentVar"));
         }
  
         /**
