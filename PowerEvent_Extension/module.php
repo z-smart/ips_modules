@@ -54,6 +54,7 @@
             parent::ApplyChanges();
 			
 			// Eingaben prüfen
+			$this->setStatus(102);
 			
 			if ($this->ReadPropertyInteger("CurrentBoundary") < 1 || $this->ReadPropertyInteger("CurrentBoundary") > 16000) $this->SetStatus(210);
 			
