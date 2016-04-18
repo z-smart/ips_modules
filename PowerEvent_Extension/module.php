@@ -80,7 +80,14 @@
 			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentBoundary: " . $this->ReadPropertyInteger("CurrentBoundary"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","StandstillTimer: " . $this->ReadPropertyInteger("StandstillTimer"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","PushState1: " . $this->ReadPropertyBoolean("PushState1"));
-			
+			IPS_LogMessage("PowerEvent_Extension_Debug","EmailState1: " . $this->ReadPropertyBoolean("EmailState1"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","ScriptState1: " . $this->ReadPropertyBoolean("ScriptState1"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","PushState2: " . $this->ReadPropertyBoolean("PushState2"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","EmailState2: " . $this->ReadPropertyBoolean("EmailState2"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","ScriptState2: " . $this->ReadPropertyBoolean("ScriptState2"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","SmtpInstanceID: " . $this->ReadPropertyInteger("SmtpInstanceID"));
+			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
         }
 		
 		public function Notify() {
