@@ -19,18 +19,18 @@
 			// Anlegen aller benötigten Instanz-Variabeln
 			$this->RegisterPropertyInteger("CurrentVar", 0);
 			$this->RegisterPropertyInteger("StandstillTimer", 1);
-			$this->RegisterPropertyInteger("CurrrentBoundary", 100);
+			$this->RegisterPropertyInteger("CurrentBoundary", 100);
 			
 			
 			$this->RegisterPropertyString("MsgState1", "Zustand 1 erreicht");
 			$this->RegisterPropertyInteger("EmailState1", 0);
 			$this->RegisterPropertyInteger("PushState1", 0);
-			$this->RegisterPropertyInteger("ScripState1", 0);
+			$this->RegisterPropertyInteger("ScriptState1", 0);
  
 			$this->RegisterPropertyString("MsgState2", "Zustand 2 erreicht");
 			$this->RegisterPropertyInteger("EmailState2", 0);
 			$this->RegisterPropertyInteger("PushState2", 0);
-			$this->RegisterPropertyInteger("ScripState2", 0);
+			$this->RegisterPropertyInteger("ScriptState2", 0);
  			
 			$this->RegisterPropertyInteger("WebFrontInstanceID", 0); 
 			$this->RegisterPropertyInteger("SmtpInstanceID", 0); 
