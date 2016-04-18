@@ -59,12 +59,12 @@
 			
 			if ($this->ReadPropertyInteger("StandstillTimer") < 1 || $this->ReadPropertyInteger("StandstillTimer") > 10) $this->SetStatus(211);
 			
-			if ((($this->ReadPropertyBoolean("PushState1") == true) || ($this->ReadPropertyBoolean("PushState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == "")) $this->SetStatus(201);
-			if ((($this->ReadPropertyBoolean("EmailState1") == true) || ($this->ReadPropertyBoolean("EmailState2") == true)) && ($this->ReadPropertyInteger("SmtpInstanceID") == "")) $this->SetStatus(202);
-			if ((($this->ReadPropertyBoolean("ScriptState1") == true) || ($this->ReadPropertyBoolean("ScriptState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == "")) $this->SetStatus(203);
+			if ((($this->ReadPropertyBoolean("PushState1") == true) || ($this->ReadPropertyBoolean("PushState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == 0)) $this->SetStatus(201);
+			if ((($this->ReadPropertyBoolean("EmailState1") == true) || ($this->ReadPropertyBoolean("EmailState2") == true)) && ($this->ReadPropertyInteger("SmtpInstanceID") == 0)) $this->SetStatus(202);
+			if ((($this->ReadPropertyBoolean("ScriptState1") == true) || ($this->ReadPropertyBoolean("ScriptState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == 0)) $this->SetStatus(203);
 			
-			if ($this->ReadPropertyInteger("CurrentVar") > 0 ) $this->SetStatus(220);
-			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentVar: " . $this->ReadPropertyInteger("CurrentVar"));
+			if ($this->ReadPropertyInteger("CurrentVar") == 0 ) $this->SetStatus(220);
+			
         }
  
         /**
@@ -76,6 +76,7 @@
         */
         public function Update() {
             // Selbsterstellter Code
+			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentVar: " . $this->ReadPropertyInteger("CurrentVar"));
         }
 		
 		public function Notify() {
