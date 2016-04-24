@@ -21,10 +21,6 @@
 			// Zu überwachende CurrentVar
 			$this->RegisterPropertyInteger("CurrentVar", 0);
 			
-			// Alte Zustands-Vars um festzustellen wann eine Änderung statt findet
-			$this->RegisterPropertyInteger("LastState", 0);
-			$this->RegisterPropertyInteger("LastStateChange", 0);
-			
 			// Festlegen der Zeit und Value Grenze für Mitteilungen, bzw. Zustandsänderungen
 			$this->RegisterPropertyInteger("StandstillTimer", 1);
 			$this->RegisterPropertyInteger("CurrentBoundary", 100);
@@ -46,6 +42,23 @@
 
 			// Timer registrieren
 			//$this->RegisterTimer("PowerEvent_UpdateTimer", 0, 'PowerEvent_Update($_IPS[\'TARGET\']);');
+			
+			// Alte Zustands-Vars um festzustellen wann eine Änderung statt findet
+			$this->RegisterPropertyInteger("LastState", 0);
+			$this->RegisterPropertyInteger("LastStateChange", 0);
+			
+			// Zustands Vars anlegen
+			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
+			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+			IPS_SetName($eid, "PowerEvent_Extension_LastState");
+			IPS_SetValue($eid, 0);
+			
+			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
+			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+			IPS_SetName($eid, "PowerEvent_Extension_LastStateChange");
+			IPS_SetValue($eid, 0);
+
+			
         }
  
 		public function Destroy() {
@@ -117,7 +130,25 @@
 			IPS_LogMessage("PowerEvent_Extension_Debug","SmtpInstanceID: " . $this->ReadPropertyInteger("SmtpInstanceID"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
 			
-			// Zustans prüfen und ggf Notify auslösen
+			if (IPS_GetValueFloat($this->ReadPropertyInteger("CurrentVar")) < $this->ReadPropertyInteger("CurrentBoundary")) {
+				// CurrentVar im Bereich Zustand1
+				if (IPS_GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 1) {
+					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 1);
+					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
+					// Notify auslösen
+						//Achtung dieser Part wird nur ausgeführt bei einer Änderung. Für das Auslösen nach der Verweildauer muss also ein Timer oder so eingerichtet werden
+				}				
+			} else {
+				// CurrentVar im Bereich Zustand2
+				if (IPS_GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 2) {
+					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 2);
+					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
+					// Notify auslösen
+						//Achtung dieser Part wird nur ausgeführt bei einer Änderung. Für das Auslösen nach der Verweildauer muss also ein Timer oder so eingerichtet werden
+				}
+			}
+			
+			// Zustand prüfen und ggf Notify auslösen
 			
         }
 		
