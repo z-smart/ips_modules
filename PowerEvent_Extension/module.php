@@ -45,12 +45,12 @@
 			$this->RegisterPropertyInteger("ScriptID", 0); 
 
 			// Timer registrieren
-			$this->RegisterTimer("PowerEvent_UpdateTimer", 0, 'PowerEvent_Update($_IPS[\'TARGET\']);');
+			//$this->RegisterTimer("PowerEvent_UpdateTimer", 0, 'PowerEvent_Update($_IPS[\'TARGET\']);');
         }
  
 		public function Destroy() {
 			
-			$this->UnregisterTimer("PowerEvent_UpdateTimer");
+			//$this->UnregisterTimer("PowerEvent_UpdateTimer");
 
 			// Event von CurrentVar entfernen
 			
@@ -82,13 +82,14 @@
 				// Event für CurrentVar anlegen und im Falle eines Updates die entsprechende Update-Function auslösen
 				
 				// alten Event ggf. löschen
-				IPS_DeleteEvent(IPS_GetObjectIDByName ("PowerEvent_Extension_ChangeEvent", $this->InstanceID ));
+				@IPS_DeleteEvent(IPS_GetObjectIDByName ("PowerEvent_Extension_ChangeEvent", $this->InstanceID ));
 				
 				// Neuen Event anlgen
 				$eid = IPS_CreateEvent(0);                  										//Ausgelöstes Ereignis
 				IPS_SetEventTrigger($eid, 1, $this->ReadPropertyInteger("CurrentVar") );			//Bei Änderung von Variable mit ID 15754
 				IPS_SetParent($eid, $this->InstanceID );         									//Ereignis zuordnen
 				IPS_SetEventScript($eid, "PowerEvent_Update($id);");
+				IPS_SetName($eid, "PowerEvent_Extension_ChangeEvent");
 				IPS_SetEventActive($eid, true);
 			}
 
