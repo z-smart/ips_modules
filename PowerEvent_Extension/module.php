@@ -17,7 +17,15 @@
             parent::Create();
 			
 			// Anlegen aller benötigten Instanz-Variabeln
+			
+			// Zu überwachende CurrentVar
 			$this->RegisterPropertyInteger("CurrentVar", 0);
+			
+			// Alte Zustands-Vars um festzustellen wann eine Änderung statt findet
+			$this->RegisterPropertyInteger("LastState", 0);
+			$this->RegisterPropertyInteger("LastStateChange", 0);
+			
+			// Festlegen der Zeit und Value Grenze für Mitteilungen, bzw. Zustandsänderungen
 			$this->RegisterPropertyInteger("StandstillTimer", 1);
 			$this->RegisterPropertyInteger("CurrentBoundary", 100);
 			
@@ -41,8 +49,11 @@
         }
  
 		public function Destroy() {
-					
+			
 			$this->UnregisterTimer("PowerEvent_UpdateTimer");
+
+			// Event von CurrentVar entfernen
+			
 			
 			parent::Destroy();
 		}
@@ -50,21 +61,39 @@
  
         // überschreibt die intere IPS_ApplyChanges($id) Funktion
         public function ApplyChanges() {
-            // Diese Zeile nicht löschen
+            
+			// Diese Zeile nicht löschen
             parent::ApplyChanges();
 			
-			// Eingaben prüfen
+			// Eingaben prüfen und im ersten Schritt Status auf "102" setzen
 			$this->setStatus(102);
 			
 			if ($this->ReadPropertyInteger("CurrentBoundary") < 1 || $this->ReadPropertyInteger("CurrentBoundary") > 16000) $this->SetStatus(210);
 			
-			if ($this->ReadPropertyInteger("StandstillTimer") < 1 || $this->ReadPropertyInteger("StandstillTimer") > 10) $this->SetStatus(211);
+			if ($this->ReadPropertyInteger("StandstillTimer") < 0 || $this->ReadPropertyInteger("StandstillTimer") > 10) $this->SetStatus(211);
 			
 			if ((($this->ReadPropertyBoolean("PushState1") == true) || ($this->ReadPropertyBoolean("PushState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == 0)) $this->SetStatus(201);
 			if ((($this->ReadPropertyBoolean("EmailState1") == true) || ($this->ReadPropertyBoolean("EmailState2") == true)) && ($this->ReadPropertyInteger("SmtpInstanceID") == 0)) $this->SetStatus(202);
 			if ((($this->ReadPropertyBoolean("ScriptState1") == true) || ($this->ReadPropertyBoolean("ScriptState2") == true)) && ($this->ReadPropertyInteger("WebFrontInstanceID") == 0)) $this->SetStatus(203);
 			
-			if ($this->ReadPropertyInteger("CurrentVar") == 0 ) $this->SetStatus(220);
+			if ($this->ReadPropertyInteger("CurrentVar") == 0 ) {
+				$this->SetStatus(220);
+			} else {
+				// Event für CurrentVar anlegen und im Falle eines Updates die entsprechende Update-Function auslösen
+				
+				// alten Event ggf. löschen
+				IPS_DeleteEvent(IPS_GetObjectIDByName ("PowerEvent_Extension_ChangeEvent", $this->InstanceID ));
+				
+				// Neuen Event anlgen
+				$eid = IPS_CreateEvent(0);                  										//Ausgelöstes Ereignis
+				IPS_SetEventTrigger($eid, 1, $this->ReadPropertyInteger("CurrentVar") );			//Bei Änderung von Variable mit ID 15754
+				IPS_SetParent($eid, $this->InstanceID );         									//Ereignis zuordnen
+				IPS_SetEventScript($eid, "PowerEvent_Update($id);");
+				IPS_SetEventActive($eid, true);
+				}
+
+			
+			}
 			
         }
  
@@ -89,6 +118,9 @@
 			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","SmtpInstanceID: " . $this->ReadPropertyInteger("SmtpInstanceID"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
+			
+			// Zustans prüfen und ggf Notify auslösen
+			
         }
 		
 		public function Notify() {

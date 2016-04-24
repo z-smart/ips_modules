@@ -6,7 +6,7 @@
 		{ "type": "Label", "label": "zu überwachender mA Wert" },
 		{ "type": "SelectVariable", "name" : "CurrentVar", "caption": "Variable"},
 		{ "type": "Label", "label": "=======================================================================" },
-		{ "type": "Label", "label": "Mindestverweildauer im Zustand" },
+		{ "type": "Label", "label": "Mindestverweildauer im Zustand (0 = sofort Status ändern)" },
 		{ "type": "NumberSpinner", "name": "StandstillTimer", "caption": "Minuten" },
 		{ "type": "Label", "label": "Milliampere Grenze zwischen Zustand 1 und Zustand 2" },
 		{ "type": "IntervalBox", "name": "CurrentBoundary", "caption" : "mA"},
@@ -38,7 +38,7 @@
         { "code": 202, "icon": "error", "caption": "FEHLER - Für E-Mail Nachrichten muss eine E-Mail-Instanz ausgewählt werden!" },
         { "code": 203, "icon": "error", "caption": "FEHLER - Für eine eigene Aktion muss ein Skript ausgewählt werden!" },
 		{ "code": 210, "icon": "error", "caption": "FEHLER - Milliampere Grenze muß größer 0 und kleiner 16000 sein!" },
-		{ "code": 211, "icon": "error", "caption": "FEHLER - Mindestverweildauer muss zwischen 1 und 10 Minuten liegen!" },
+		{ "code": 211, "icon": "error", "caption": "FEHLER - Mindestverweildauer muss zwischen 0 und 10 Minuten liegen!" },
 		{ "code": 220, "icon": "error", "caption": "FEHLER - Keine zu überwachende mA Variabel ausgewählt!" }
 	]
 }
