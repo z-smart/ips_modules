@@ -51,12 +51,12 @@
 			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "PowerEvent_Extension_LastState");
-			IPS_SetValue($eid, 0);
+			SetValue($eid, 0);
 			
 			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "PowerEvent_Extension_LastStateChange");
-			IPS_SetValue($eid, 0);
+			SetValue($eid, 0);
 
 			
         }
@@ -130,19 +130,19 @@
 			IPS_LogMessage("PowerEvent_Extension_Debug","SmtpInstanceID: " . $this->ReadPropertyInteger("SmtpInstanceID"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
 			
-			if (IPS_GetValueFloat($this->ReadPropertyInteger("CurrentVar")) < $this->ReadPropertyInteger("CurrentBoundary")) {
+			if (GetValueFloat($this->ReadPropertyInteger("CurrentVar")) < $this->ReadPropertyInteger("CurrentBoundary")) {
 				// CurrentVar im Bereich Zustand1
-				if (IPS_GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 1) {
-					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 1);
-					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
+				if (GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 1) {
+					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 1);
+					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
 					// Notify auslösen
 						//Achtung dieser Part wird nur ausgeführt bei einer Änderung. Für das Auslösen nach der Verweildauer muss also ein Timer oder so eingerichtet werden
 				}				
 			} else {
 				// CurrentVar im Bereich Zustand2
-				if (IPS_GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 2) {
-					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 2);
-					IPS_SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
+				if (GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 2) {
+					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 2);
+					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
 					// Notify auslösen
 						//Achtung dieser Part wird nur ausgeführt bei einer Änderung. Für das Auslösen nach der Verweildauer muss also ein Timer oder so eingerichtet werden
 				}
