@@ -90,11 +90,8 @@
 				IPS_SetParent($eid, $this->InstanceID );         									//Ereignis zuordnen
 				IPS_SetEventScript($eid, "PowerEvent_Update($id);");
 				IPS_SetEventActive($eid, true);
-				}
-
-			
 			}
-			
+
         }
  
         /**
