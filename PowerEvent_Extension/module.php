@@ -88,7 +88,7 @@
 				$eid = IPS_CreateEvent(0);                  										//Ausgelöstes Ereignis
 				IPS_SetEventTrigger($eid, 1, $this->ReadPropertyInteger("CurrentVar") );			//Bei Änderung von Variable mit ID 15754
 				IPS_SetParent($eid, $this->InstanceID );         									//Ereignis zuordnen
-				IPS_SetEventScript($eid, "PowerEvent_Update($id);");
+				IPS_SetEventScript($eid, "PowerEvent_Update(".$this->InstanceID.");");
 				IPS_SetName($eid, "PowerEvent_Extension_ChangeEvent");
 				IPS_SetEventActive($eid, true);
 			}
