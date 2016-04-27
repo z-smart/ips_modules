@@ -147,7 +147,7 @@
 						
 						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
 						
-						IPS_SetEventCyclicTimeFrom($timerId, $spaeter[hours], $spaeter[minutes], $spaeter[seconds]);
+						IPS_SetEventCyclicTimeFrom($timerId, $spaeter["hours"], $spaeter["minutes"], $spaeter["seconds"]);
 												
 						IPS_SetEventLimit($timerId, 1);
 						IPS_SetEventActive($timerId, true);
@@ -173,7 +173,7 @@
 						
 						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
 						
-						IPS_SetEventCyclicTimeFrom($timerId, $spaeter[hours], $spaeter[minutes], $spaeter[seconds]);
+						IPS_SetEventCyclicTimeFrom($timerId, $spaeter["hours"], $spaeter["minutes"], $spaeter["seconds"]);
 												
 						IPS_SetEventLimit($timerId, 1);
 						IPS_SetEventActive($timerId, true);

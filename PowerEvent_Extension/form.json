@@ -9,7 +9,7 @@
 		{ "type": "Label", "label": "Mindestverweildauer im Zustand (0 = sofort Status ändern)" },
 		{ "type": "NumberSpinner", "name": "StandstillTimer", "caption": "Minuten" },
 		{ "type": "Label", "label": "Milliampere Grenze zwischen Zustand 1 und Zustand 2" },
-		{ "type": "IntervalBox", "name": "CurrentBoundary", "caption" : "mA"},
+		{ "type": "NumberSpinner", "name": "CurrentBoundary", "caption" : "mA"},
 		{ "type": "ValidationTextBox", "name": "MsgState1", "caption": "Nachricht Zustand 1" },
 		{ "type": "CheckBox", "name": "EmailState1", "caption": "Zustand 1 per E-Mail melden" },
 		{ "type": "CheckBox", "name": "PushState1", "caption": "Zustand 1 per Push-Nachricht melden" },
