@@ -139,7 +139,7 @@
 					
 					if ($this->ReadPropertyInteger("StandstillTimer") == 0) {
 						// keine Verzögerung bis zur Benachrichtigung
-						Notify();
+						$this->Notify();
 						
 						// Timer deaktivieren (falls nicht schon deaktiviert)
 					}	else {
