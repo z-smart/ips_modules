@@ -143,8 +143,11 @@
 						
 						// Timer deaktivieren (falls nicht schon deaktiviert)
 					}	else {
-						// Timer auf entsprechende Zeit setzen
+						// Timer auf entsprechende Zeit setzen und aktivieren
 						$this->SetTimerInterval("PowerEvent_Extension_NotifyTimer",($this->ReadPropertyInteger("StandstillTimer")*60*1000));
+						IPS_SetEventLimit(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), 1);
+						IPS_SetEventActive(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), true);
+						
 					}
 					
 				}				
@@ -156,6 +159,18 @@
 					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
 					// Notify auslösen
 					
+					if ($this->ReadPropertyInteger("StandstillTimer") == 0) {
+						// keine Verzögerung bis zur Benachrichtigung
+						$this->Notify();
+						
+						// Timer deaktivieren (falls nicht schon deaktiviert)
+					}	else {
+						// Timer auf entsprechende Zeit setzen und aktivieren
+						$this->SetTimerInterval("PowerEvent_Extension_NotifyTimer",($this->ReadPropertyInteger("StandstillTimer")*60*1000));
+						IPS_SetEventLimit(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), 1);
+						IPS_SetEventActive(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), true);
+						
+					}
 				}
 			}
         }
