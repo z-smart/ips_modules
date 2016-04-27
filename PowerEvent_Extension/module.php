@@ -140,13 +140,17 @@
 					if ($this->ReadPropertyInteger("StandstillTimer") == 0) {
 						// keine Verzögerung bis zur Benachrichtigung
 						$this->Notify();
-						
-						// Timer deaktivieren (falls nicht schon deaktiviert)
+												
 					}	else {
 						// Timer auf entsprechende Zeit setzen und aktivieren
-						$this->SetTimerInterval("PowerEvent_Extension_NotifyTimer",($this->ReadPropertyInteger("StandstillTimer")*60*1000));
-						IPS_SetEventLimit(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), 1);
-						IPS_SetEventActive(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), true);
+						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
+						
+						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
+						
+						IPS_SetEventCyclicTimeFrom($timerId, $spaeter[hours], $spaeter[minutes], $spaeter[seconds]);
+												
+						IPS_SetEventLimit($timerId, 1);
+						IPS_SetEventActive($timerId, true);
 						
 					}
 					
@@ -162,13 +166,17 @@
 					if ($this->ReadPropertyInteger("StandstillTimer") == 0) {
 						// keine Verzögerung bis zur Benachrichtigung
 						$this->Notify();
-						
-						// Timer deaktivieren (falls nicht schon deaktiviert)
+												
 					}	else {
 						// Timer auf entsprechende Zeit setzen und aktivieren
-						$this->SetTimerInterval("PowerEvent_Extension_NotifyTimer",($this->ReadPropertyInteger("StandstillTimer")*60*1000));
-						IPS_SetEventLimit(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), 1);
-						IPS_SetEventActive(IPS_GetObjectIDByName ("PowerEvent_Extension_NotifyTimer", $this->InstanceID ), true);
+						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
+						
+						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
+						
+						IPS_SetEventCyclicTimeFrom($timerId, $spaeter[hours], $spaeter[minutes], $spaeter[seconds]);
+												
+						IPS_SetEventLimit($timerId, 1);
+						IPS_SetEventActive($timerId, true);
 						
 					}
 				}
