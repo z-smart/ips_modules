@@ -216,7 +216,7 @@
 			if ($this->ReadPropertyBoolean("EmailState".$LastState) == true)
 			{
 					$SMTPinstanzID = $this->ReadPropertyInteger("SmtpInstanceID");
-					if (($SMTPinstanzID != "") A&& (@IPS_InstanceExists($SMTPinstanzID) == true))
+					if (($SMTPinstanzID != "") && (@IPS_InstanceExists($SMTPinstanzID) == true))
 					{
 							SMTP_SendMail($SMTPinstanzID, "PowerEvent_Extension", $Message);
 					}		
