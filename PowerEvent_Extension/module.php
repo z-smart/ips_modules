@@ -41,7 +41,7 @@
 			$this->RegisterPropertyInteger("ScriptID", 0); 
 
 			// Timer registrieren
-			//$this->RegisterTimer("PowerEvent_UpdateTimer", 0, 'PowerEvent_Update($_IPS[\'TARGET\']);');
+			$this->RegisterTimer("PowerEvent_Extension_NotifyTimer", 0, "PowerEvent_Notify(".$this->InstanceID.");");
 			
 			// Alte Zustands-Vars um festzustellen wann eine Änderung statt findet
 			$this->RegisterPropertyInteger("LastState", 0);
@@ -63,11 +63,9 @@
  
 		public function Destroy() {
 			
-			//$this->UnregisterTimer("PowerEvent_UpdateTimer");
+			//$this->UnregisterTimer("PowerEvent_Extension_NotifyTimer");
 
-			// Event von CurrentVar entfernen
-			
-			
+						
 			parent::Destroy();
 		}
  
@@ -116,7 +114,7 @@
         *
         */
         public function Update() {
-            // Selbsterstellter Code
+            // Debugging Code
 			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentVar: " . $this->ReadPropertyInteger("CurrentVar"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentBoundary: " . $this->ReadPropertyInteger("CurrentBoundary"));
 			IPS_LogMessage("PowerEvent_Extension_Debug","StandstillTimer: " . $this->ReadPropertyInteger("StandstillTimer"));
@@ -133,27 +131,43 @@
 			if (GetValueFloat($this->ReadPropertyInteger("CurrentVar")) < $this->ReadPropertyInteger("CurrentBoundary")) {
 				// CurrentVar im Bereich Zustand1
 				if (GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 1) {
+					
 					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 1);
 					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
+					
 					// Notify auslösen
-						//Achtung dieser Part wird nur ausgeführt bei einer Änderung. Für das Auslösen nach der Verweildauer muss also ein Timer oder so eingerichtet werden
+					
+					if ($this->ReadPropertyInteger("StandstillTimer") == 0) {
+						// keine Verzögerung bis zur Benachrichtigung
+						Notify();
+						
+						// Timer deaktivieren (falls nicht schon deaktiviert)
+					}	else {
+						// Timer auf entsprechende Zeit setzen
+						$this->SetTimerInterval("PowerEvent_Extension_NotifyTimer",($this->ReadPropertyInteger("StandstillTimer")*60*1000));
+					}
+					
 				}				
 			} else {
 				// CurrentVar im Bereich Zustand2
 				if (GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 2) {
+					
 					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ), 2);
 					SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ), time());
 					// Notify auslösen
-						//Achtung dieser Part wird nur ausgeführt bei einer Änderung. Für das Auslösen nach der Verweildauer muss also ein Timer oder so eingerichtet werden
+					
 				}
 			}
-			
-			// Zustand prüfen und ggf Notify auslösen
-			
         }
+
+
 		
 		public function Notify() {
-            // Selbsterstellter Code
+            // Timer deaktivieren
+			$this->SetTimerInterval("PowerEvent_Extension_NotifyTimer",0);
+			
+			// Selbsterstellter Code
+			IPS_LogMessage("PowerEvent_Extension_Debug","Notify me: " . GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )));
         }
 		
     }
