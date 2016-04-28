@@ -53,6 +53,11 @@
 			IPS_SetName($eid, "PowerEvent_Extension_LastState");
 			SetValue($eid, 0);
 			
+			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten gemeldeten Zustands
+			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+			IPS_SetName($eid, "PowerEvent_Extension_LastState_Notified");
+			SetValue($eid, 0);
+						
 			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "PowerEvent_Extension_LastStateChange");
@@ -114,20 +119,7 @@
         *
         */
         public function Update() {
-            // Debugging Code
-			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentVar: " . $this->ReadPropertyInteger("CurrentVar"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","CurrentBoundary: " . $this->ReadPropertyInteger("CurrentBoundary"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","StandstillTimer: " . $this->ReadPropertyInteger("StandstillTimer"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","PushState1: " . $this->ReadPropertyBoolean("PushState1"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","EmailState1: " . $this->ReadPropertyBoolean("EmailState1"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","ScriptState1: " . $this->ReadPropertyBoolean("ScriptState1"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","PushState2: " . $this->ReadPropertyBoolean("PushState2"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","EmailState2: " . $this->ReadPropertyBoolean("EmailState2"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","ScriptState2: " . $this->ReadPropertyBoolean("ScriptState2"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","WebFrontInstanceID: " . $this->ReadPropertyInteger("WebFrontInstanceID"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","SmtpInstanceID: " . $this->ReadPropertyInteger("SmtpInstanceID"));
-			IPS_LogMessage("PowerEvent_Extension_Debug","ScriptID: " . $this->ReadPropertyInteger("ScriptID"));
-			
+            
 			if (GetValueFloat($this->ReadPropertyInteger("CurrentVar")) < $this->ReadPropertyInteger("CurrentBoundary")) {
 				// CurrentVar im Bereich Zustand1
 				if (GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID )) != 1) {
@@ -190,11 +182,9 @@
 			
 			// Werte ermitteln
 			$LastState = GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ));
-
-			// Debugging Code 
-			IPS_LogMessage("PowerEvent_Extension_Debug","Notify me: " . $LastState);
-
+			$LastStateNotified = GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState_Notified", $this->InstanceID ));
 			
+						
 			if ( $LastState == 1 ) {
 				$Message = $this->ReadPropertyString("MsgState1");
 			} else {
@@ -202,37 +192,45 @@
 			}
 			
 			
-			// Push-Msg verschicken
-			if ($this->ReadPropertyBoolean("PushState".$LastState) == true)
-			{
-					$WFinstanzID = $this->ReadPropertyInteger("WebFrontInstanceID");
-					if (($WFinstanzID != "") && (@IPS_InstanceExists($WFinstanzID) == true))
-					{
-							WFC_PushNotification($WFinstanzID, "PowerEvent_Extension", $Message, "happy", 0);
-					}
+			// Prüfen ob letzte Status Änderung bemerkt und ggf. gemeldet wurde. Das ist dann der Fall wenn $LastStateNotified identisch mit aktuellem Status ist
+			if ($LastState != $LastStateNotified) {
+				
+				// Push-Msg verschicken
+				if ($this->ReadPropertyBoolean("PushState".$LastState) == true)
+				{
+						$WFinstanzID = $this->ReadPropertyInteger("WebFrontInstanceID");
+						if (($WFinstanzID != "") && (@IPS_InstanceExists($WFinstanzID) == true))
+						{
+								WFC_PushNotification($WFinstanzID, "PowerEvent_Extension", $Message, "happy", 0);
+						}
+				}
+			
+				// E-Mail verschicken
+				if ($this->ReadPropertyBoolean("EmailState".$LastState) == true)
+				{
+						$SMTPinstanzID = $this->ReadPropertyInteger("SmtpInstanceID");
+						if (($SMTPinstanzID != "") && (@IPS_InstanceExists($SMTPinstanzID) == true))
+						{
+								SMTP_SendMail($SMTPinstanzID, "PowerEvent_Extension", $Message);
+						}		
+				}
+				
+				// Skript ausführen
+				if ($this->ReadPropertyBoolean("ScriptState".$LastState) == true)
+				{
+						$SkriptID = $this->ReadPropertyInteger("ScriptID");
+						if (($SkriptID != "") AND (@IPS_ScriptExists($SkriptID) == true))
+						{
+								IPS_RunScript($SkriptID);
+						}		
+				}
+		
+			
+				SetValue(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState_Notified", $this->InstanceID ), $LastState);
+				
 			}
         
-			// E-Mail verschicken
-			if ($this->ReadPropertyBoolean("EmailState".$LastState) == true)
-			{
-					$SMTPinstanzID = $this->ReadPropertyInteger("SmtpInstanceID");
-					if (($SMTPinstanzID != "") && (@IPS_InstanceExists($SMTPinstanzID) == true))
-					{
-							SMTP_SendMail($SMTPinstanzID, "PowerEvent_Extension", $Message);
-					}		
-			}
-			
-			// Skript ausführen
-			if ($this->ReadPropertyBoolean("ScriptState".$LastState) == true)
-			{
-					$SkriptID = $this->ReadPropertyInteger("ScriptID");
-					if (($SkriptID != "") AND (@IPS_ScriptExists($SkriptID) == true))
-					{
-							IPS_RunScript($SkriptID);
-					}		
-			}
-		
-        }
+		}
 		
   
   }
