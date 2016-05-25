@@ -1,7 +1,7 @@
 {
 	"elements":
 	[
-		{ "type": "Label", "label": "PowerEvent_Extension v0.1 (17.04.2016 09.45Uhr)" },
+		{ "type": "Label", "label": "PowerEvent_Extension v1.0 (25.05.2016 16.29 Uhr)" },
 		{ "type": "Label", "label": "=======================================================================" },
 		{ "type": "Label", "label": "zu überwachender mA Wert" },
 		{ "type": "SelectVariable", "name" : "CurrentVar", "caption": "Variable"},
