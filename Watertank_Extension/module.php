@@ -166,7 +166,7 @@ echo "FILLLEVEL: "+$FillLevel;
 echo "REALFILL: "+$RealFillLevel;
 echo "MAXSTEPS: "+$MaxSteps;
 			
-			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), (GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps * $RealFillLevel)); 
+			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), ($this->ReadPropertyInteger("WatertankVolume") / $MaxSteps * $RealFillLevel)); 
 			
 			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume_Percent", $this->InstanceID), 100 / $MaxSteps * $RealFillLevel);
 
@@ -194,18 +194,18 @@ echo "MAXSTEPS: "+$MaxSteps;
 				// Liter-Angaben für die 3 Jahre berechnen
 				
 				SetValue(IPS_GetObjectIDByName("Watertank_Extension_Year1_Liter", $this->InstanceID),  
-					GetValue(IPS_GetObjectIDByName("Watertank_Extension_Year1", $this->InstanceID)) * ( GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps )  );
+					GetValue(IPS_GetObjectIDByName("Watertank_Extension_Year1", $this->InstanceID)) * ( $this->ReadPropertyInteger("WatertankVolume") / $MaxSteps )  );
 				
 				SetValue(IPS_GetObjectIDByName("Watertank_Extension_Year2_Liter", $this->InstanceID),  
-					GetValue(IPS_GetObjectIDByName("Watertank_Extension_Year2", $this->InstanceID)) * ( GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps )  );
+					GetValue(IPS_GetObjectIDByName("Watertank_Extension_Year2", $this->InstanceID)) * ( $this->ReadPropertyInteger("WatertankVolume") / $MaxSteps )  );
 				
 				SetValue(IPS_GetObjectIDByName("Watertank_Extension_Year3_Liter", $this->InstanceID),  
-					GetValue(IPS_GetObjectIDByName("Watertank_Extension_Year3", $this->InstanceID)) * ( GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps )  );
+					GetValue(IPS_GetObjectIDByName("Watertank_Extension_Year3", $this->InstanceID)) * ( $this->ReadPropertyInteger("WatertankVolume") / $MaxSteps )  );
 				
 				// HTML String mit aktuellen Daten erzeugen
 				$HTML_Code= "Test";
 				
-				SetValue(IP_GetObjectIDByName("Watertank_Extension_HTML", $this->InstanceID),$HTML_Code);
+				SetValue(IPS_GetObjectIDByName("Watertank_Extension_HTML", $this->InstanceID),$HTML_Code);
 				
 
 		}
