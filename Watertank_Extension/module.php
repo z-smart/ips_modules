@@ -146,6 +146,8 @@
         */
         public function Update() {
 			
+			$FillLevel = GetValueInteger($this->ReadPropertyInteger("FillingLevelVar"));
+			
 			// prüfen ob neuer Level größer oder kleiner der bekannten Größen ist und diese ggf. anpassen / kalibrieren
 			if ($FillLevel < GetValueInteger(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ))) {
 				SetValue(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ), $FillLevel);				
@@ -155,8 +157,7 @@
 				SetValue(IPS_GetObjectIDByName ("Watertank_Extension_UpperBoundary", $this->InstanceID ), $FillLevel);				
 			}
 		
-			// benötigte Werte ermitteln
-			$FillLevel = GetValueInteger($this->ReadPropertyInteger("FillingLevelVar"));
+			
 			$RealFillLevel = $FillLevel - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
 			$MaxSteps =  GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_UpperBoundary", $this->InstanceID)) - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
 			
