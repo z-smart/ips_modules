@@ -180,7 +180,7 @@
 			
 				// aktuellen Jahresverbrauch kalkulieren, bzw. aufaddieren (Hier den MinChangeValue berücksichtigen)
 				
-				if (($_IPS['OLDVALUE']-($this-ReadPropertyInteger("MinChangeValue")-1) > $_IPS['VALUE'] ) {
+				if (($_IPS['OLDVALUE']-($this-ReadPropertyInteger("MinChangeValue")-1) > $_IPS['VALUE'] )) {
 					SetValue(IPS_GetObjectIDByName ( "Watertank_Extension_Year1", $this->InstanceID ),
 						GetValue(IPS_GetObjectIDByName( "Watertank_Extension_Year1", $this->InstanceID )) +	( $_IPS['OLDVALUE'] - $_IPS['VALUE'] ) );
 				}
