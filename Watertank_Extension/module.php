@@ -152,11 +152,11 @@
 			$MaxSteps =  GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_UpperBoundary", $this->InstanceID)) - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
 			
 			// prüfen ob neuer Level größer oder kleiner der bekannten Größen ist und diese ggf. anpassen / kalibrieren
-			if $FillLevel < GetValueInteger(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID )) {
+			if ($FillLevel < GetValueInteger(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ))) {
 				SetValue(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ), $FillLevel);				
 			}
 			
-			if $FillLevel > GetValueInteger(IPS_GetObjectIDByName ("Watertank_Extension_UpperBoundary", $this->InstanceID )) {
+			if ($FillLevel > GetValueInteger(IPS_GetObjectIDByName ("Watertank_Extension_UpperBoundary", $this->InstanceID ))) {
 				SetValue(IPS_GetObjectIDByName ("Watertank_Extension_UpperBoundary", $this->InstanceID ), $FillLevel);				
 			}
 		
