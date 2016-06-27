@@ -1,0 +1,24 @@
+{
+	"elements":
+	[
+		{ "type": "Label", "label": "Watertank_Extension v0.1 (25.05.2016 16.45 Uhr)" },
+		{ "type": "Label", "label": "=======================================================================" },
+		{ "type": "Label", "label": "zu überwachender Filling Level" },
+		{ "type": "SelectVariable", "name" : "FillingLevel", "caption": "Variable"},
+		{ "type": "Label", "label": "Volumen der Zisterne" },
+		{ "type": "IntervalBox", "name": "WatertankVolume", "caption": "Liter" },
+		{ "type": "Label", "label": "Mindestveränderung für Wertung" },
+		{ "type": "NumberSpinner", "name": "MinChangeValue", "caption": "Einheiten" }		
+	],
+	"actions":
+	[
+		{ "type": "Button", "label": "Update", "onClick": "Watertank_Update($id);" }		
+	],
+	"status":
+	[
+        { "code": 102, "icon": "active", "caption": "Watertank_Extension ist aktiv" },
+		{ "code": 210, "icon": "error", "caption": "FEHLER - Volumen muß größer 100 und kleiner 30000 sein!" },
+		{ "code": 220, "icon": "error", "caption": "FEHLER - Keine zu überwachender Filling Level Variable ausgewählt!" },
+		{ "code": 230, "icon": "error", "caption": "FEHLER - Mindestveränderung für Filling Level muss zwischen 1 und 5 liegen!" }
+	]
+}

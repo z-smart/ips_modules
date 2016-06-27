@@ -1,0 +1,13 @@
+{
+	"id": "{0467D738-B9E9-444A-950C-D0BCFDF2FE77}",
+	"name": "Watertank_Extension",
+	"type": 3,
+	"vendor": "www.mziolek.de",
+	"aliases":
+	[
+	],  
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "Watertank"
+}
