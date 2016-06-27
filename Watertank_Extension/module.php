@@ -114,7 +114,7 @@
 			if ($this->ReadPropertyInteger("WatertankVolume") < 100 || $this->ReadPropertyInteger("WatertankVolume") > 30000) $this->SetStatus(210);
 			
 			
-			if ($this->ReadPropertyInteger("FillingLevelVarVar") == 0 ) {
+			if ($this->ReadPropertyInteger("FillingLevelVar") == 0 ) {
 				$this->SetStatus(220);
 			} else {
 				// Event für FillingLevelVar anlegen und im Falle eines Updates die entsprechende Update-Function auslösen
