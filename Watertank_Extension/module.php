@@ -163,7 +163,7 @@
 			
 			// aktuelles Volumen kalkulieren
 			
-			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps * $RealFillLevel); 
+			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), (GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps * $RealFillLevel)); 
 			
 			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume_Percent", $this->InstanceID), 100 / $MaxSteps * $RealFillLevel);
 
@@ -176,6 +176,8 @@
 					SetValue(IPS_GetObjectIDByName("Watertank_Extension_Year3", $this->InstanceID), GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_Year2", $this->InstanceID)));
 					SetValue(IPS_GetObjectIDByName("Watertank_Extension_Year2", $this->InstanceID), GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_Year1", $this->InstanceID)));
 					SetValue(IPS_GetObjectIDByName("Watertank_Extension_Year1", $this->InstanceID),0);
+					
+					SetValue(IPS_GetObjectIDByName("Watertank_Extension_actual_Year", $this->InstanceID), intval(date("Y")));
 					
 				}
 			
