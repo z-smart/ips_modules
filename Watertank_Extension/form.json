@@ -6,7 +6,7 @@
 		{ "type": "Label", "label": "zu überwachender Filling Level" },
 		{ "type": "SelectVariable", "name" : "FillingLevelVar", "caption": "Variable"},
 		{ "type": "Label", "label": "Volumen der Zisterne" },
-		{ "type": "IntervalBox", "name": "WatertankVolume", "caption": "Liter" },
+		{ "type": "NumberSpinner", "name": "WatertankVolume", "caption": "Liter" },
 		{ "type": "Label", "label": "Mindestveränderung für Wertung" },
 		{ "type": "NumberSpinner", "name": "MinChangeValue", "caption": "Einheiten" }		
 	],

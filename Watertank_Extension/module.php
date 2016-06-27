@@ -42,12 +42,12 @@
 			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des höchsten Level-Werts
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "Watertank_Extension_UpperBoundary");
-			SetValue($eid, 0);
+			SetValue($eid, 60);
 
 			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des niedrigsten Level-Werts
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "Watertank_Extension_LowerBoundary");
-			SetValue($eid, 0);
+			SetValue($eid, 40);
 
 			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch aktuelles Jahr
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
@@ -146,11 +146,6 @@
         */
         public function Update() {
 			
-			// benötigte Werte ermitteln
-			$FillLevel = GetValueInteger($this->ReadPropertyInteger("FillingLevelVar"));
-			$RealFillLevel = $FillLevel - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
-			$MaxSteps =  GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_UpperBoundary", $this->InstanceID)) - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
-			
 			// prüfen ob neuer Level größer oder kleiner der bekannten Größen ist und diese ggf. anpassen / kalibrieren
 			if ($FillLevel < GetValueInteger(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ))) {
 				SetValue(IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ), $FillLevel);				
@@ -160,6 +155,11 @@
 				SetValue(IPS_GetObjectIDByName ("Watertank_Extension_UpperBoundary", $this->InstanceID ), $FillLevel);				
 			}
 		
+			// benötigte Werte ermitteln
+			$FillLevel = GetValueInteger($this->ReadPropertyInteger("FillingLevelVar"));
+			$RealFillLevel = $FillLevel - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
+			$MaxSteps =  GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_UpperBoundary", $this->InstanceID)) - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
+			
 			// aktuelles Volumen kalkulieren
 			
 			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps * $RealFillLevel); 
