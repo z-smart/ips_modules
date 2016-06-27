@@ -162,8 +162,11 @@
 			$MaxSteps =  GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_UpperBoundary", $this->InstanceID)) - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
 			
 			// aktuelles Volumen kalkulieren
+echo $FillLevel;
+echo $RealFillLevel;
+echo $MaxSteps;
 			
-			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), (floatval(GetValueInteger($this->ReadPropertyInteger("WatertankVolume"))) / $MaxSteps * $RealFillLevel)); 
+			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), (GetValueInteger($this->ReadPropertyInteger("WatertankVolume")) / $MaxSteps * $RealFillLevel)); 
 			
 			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume_Percent", $this->InstanceID), 100 / $MaxSteps * $RealFillLevel);
 
