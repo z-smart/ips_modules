@@ -4,7 +4,7 @@
 		{ "type": "Label", "label": "Watertank_Extension v0.1 (25.05.2016 16.45 Uhr)" },
 		{ "type": "Label", "label": "=======================================================================" },
 		{ "type": "Label", "label": "zu überwachender Filling Level" },
-		{ "type": "SelectVariable", "name" : "FillingLevel", "caption": "Variable"},
+		{ "type": "SelectVariable", "name" : "FillingLevelVar", "caption": "Variable"},
 		{ "type": "Label", "label": "Volumen der Zisterne" },
 		{ "type": "IntervalBox", "name": "WatertankVolume", "caption": "Liter" },
 		{ "type": "Label", "label": "Mindestveränderung für Wertung" },
