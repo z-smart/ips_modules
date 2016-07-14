@@ -187,6 +187,9 @@ echo "MAXSTEPS: "+$MaxSteps;
 				}
 			
 				// aktuellen Jahresverbrauch kalkulieren, bzw. aufaddieren (Hier den MinChangeValue berücksichtigen)
+echo "$_IPS['VALUE']: "+$_IPS['VALUE'];
+echo "$_IPS['OLDVALUE']: "+$_IPS['OLDVALUE'];
+
 				
 				if (($_IPS['OLDVALUE']-($this->ReadPropertyInteger("MinChangeValue")-1) > $_IPS['VALUE'] )) {
 					SetValue(IPS_GetObjectIDByName ( "Watertank_Extension_Year1", $this->InstanceID ),
