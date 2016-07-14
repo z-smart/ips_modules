@@ -164,9 +164,9 @@
 			$MaxSteps =  GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_UpperBoundary", $this->InstanceID)) - GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_LowerBoundary", $this->InstanceID));
 			
 			// aktuelles Volumen kalkulieren
-IPS_LogMessage("Watertank_Extension","FILLLEVEL: "+$FillLevel);
-IPS_LogMessage("Watertank_Extension","REALFILL: "+$RealFillLevel);
-IPS_LogMessage("Watertank_Extension","MAXSTEPS: "+$MaxSteps);
+IPS_LogMessage("Watertank_Extension","FILLLEVEL: ".$FillLevel);
+IPS_LogMessage("Watertank_Extension","REALFILL: ".$RealFillLevel);
+IPS_LogMessage("Watertank_Extension","MAXSTEPS: ".$MaxSteps);
 			
 			SetValue(IPS_GetObjectIDByName("Watertank_Extension_Current_Volume", $this->InstanceID), ($this->ReadPropertyInteger("WatertankVolume") / $MaxSteps * $RealFillLevel)); 
 			
@@ -187,8 +187,8 @@ IPS_LogMessage("Watertank_Extension","MAXSTEPS: "+$MaxSteps);
 				}
 			
 				// aktuellen Jahresverbrauch kalkulieren, bzw. aufaddieren (Hier den MinChangeValue berücksichtigen)
-IPS_LogMessage("Watertank_Extension","$_IPS[VALUE]: "+$_IPS['VALUE']);
-IPS_LogMessage("Watertank_Extension","$_IPS[OLDVALUE]: "+$_IPS['OLDVALUE']);
+IPS_LogMessage("Watertank_Extension","IPS[VALUE]: ".$_IPS['VALUE']);
+IPS_LogMessage("Watertank_Extension","IPS[OLDVALUE]: ".$_IPS['OLDVALUE']);
 
 				
 				if (($_IPS['OLDVALUE']-($this->ReadPropertyInteger("MinChangeValue")-1) > $_IPS['VALUE'] )) {
