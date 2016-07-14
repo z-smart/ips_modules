@@ -79,17 +79,19 @@
 			IPS_SetName($eid, "Watertank_Extension_Year3_Liter");
 			SetValue($eid, 0);
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+			/*
+			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des Jahres bei der letzten Änderung
+			IPS_SetParent($eid, $this->InstanceID );         									// dient dazu den Jahreswechsel zu erkennen
 			IPS_SetName($eid, "Watertank_Extension_Year_Last_Change");
 			SetValue($eid, 0);
+			*/
 			
 			$eid = IPS_CreateVariable(3);                  										// Neue Var zum speichern des HTML Codes
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "Watertank_Extension_HTML");
 			SetValue($eid, 0);
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
+			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des aktuellen Jahres
 			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 			IPS_SetName($eid, "Watertank_Extension_actual_Year");
 			SetValue($eid, 0);
