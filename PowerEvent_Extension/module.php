@@ -16,7 +16,7 @@
             // Diese Zeile nicht löschen.
             parent::Create();
 			
-			// Anlegen aller benötigten Instanz-Variabeln
+			// Anlegen aller benötigten Instanz-Variabeln, wenn nicht bereits vorhanden
 			
 			// Zu überwachende CurrentVar
 			$this->RegisterPropertyInteger("CurrentVar", 0);
@@ -47,22 +47,27 @@
 			$this->RegisterPropertyInteger("LastState", 0);
 			$this->RegisterPropertyInteger("LastStateChange", 0);
 			
-			// Zustands Vars anlegen
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "PowerEvent_Extension_LastState");
-			SetValue($eid, 0);
+			// Zustands Vars anlegen, wenn nicht bereits vorhanden
+			if (@IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "PowerEvent_Extension_LastState");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten gemeldeten Zustands
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "PowerEvent_Extension_LastState_Notified");
-			SetValue($eid, 0);
-						
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "PowerEvent_Extension_LastStateChange");
-			SetValue($eid, 0);
-
+			if (@IPS_GetObjectIDByName ("PowerEvent_Extension_LastState_Notified", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten gemeldeten Zustands
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "PowerEvent_Extension_LastState_Notified");
+				SetValue($eid, 0);
+			}
+				
+			if (@IPS_GetObjectIDByName ("PowerEvent_Extension_LastStateChange", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des letzten Zustands
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "PowerEvent_Extension_LastStateChange");
+				SetValue($eid, 0);
+			}
 			
         }
  
