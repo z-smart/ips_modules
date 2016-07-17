@@ -96,6 +96,12 @@
 			IPS_SetName($eid, "Watertank_Extension_actual_Year");
 			SetValue($eid, 0);
 			
+			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern der Volumenänderung wenn kleiner MinChangeValue
+			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+			IPS_SetName($eid, "Watertank_Extension_change_save");
+			SetValue($eid, 0);
+			
+			
         }
  
 		public function Destroy() {
@@ -191,9 +197,17 @@ IPS_LogMessage("Watertank_Extension","IPS[VALUE]: ".$_IPS['VALUE']);
 IPS_LogMessage("Watertank_Extension","IPS[OLDVALUE]: ".$_IPS['OLDVALUE']);
 
 				
-				if (($_IPS['OLDVALUE']-($this->ReadPropertyInteger("MinChangeValue")-1) > $_IPS['VALUE'] )) {
+				if (($_IPS['OLDVALUE']-($this->ReadPropertyInteger("MinChangeValue")-1)+GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_change_save", $this->InstanceID)) > $_IPS['VALUE'] )) {
 					SetValue(IPS_GetObjectIDByName ( "Watertank_Extension_Year1", $this->InstanceID ),
 						GetValue(IPS_GetObjectIDByName( "Watertank_Extension_Year1", $this->InstanceID )) +	( $_IPS['OLDVALUE'] - $_IPS['VALUE'] ) );
+				} else {
+					// veränderung ist kleiner als der MinChangeValue, dann Wert sichern - ODER Volumen hat zugenommen
+					if ($_IPS['OLDVALUE'] < $_IPS['VALUE']) {
+						SetValue(IPS_GetObjectIDByName("Watertank_Extension_change_save", $this->InstanceID), 0);
+					} else {
+						SetValue(IPS_GetObjectIDByName ( "Watertank_Extension_change_save", $this->InstanceID ), $_IPS['OLDVALUE'] - $_IPS['VALUE']);
+					}
+					
 				}
 				
 				// Liter-Angaben für die 3 Jahre berechnen
