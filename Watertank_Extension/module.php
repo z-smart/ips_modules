@@ -24,82 +24,97 @@
 			$this->RegisterPropertyInteger("MinChangeValue", 0);
 			
 			// Zähler Vars und HTML Var anlegen
-			$eid = IPS_CreateVariable(1);                  										// Neue Var für den letzten Filling_Level
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Last_Level");
-			SetValue($eid, 0);
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var für das aktuelle Volumen
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Current_Volume");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Current_Volume", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var für das aktuelle Volumen
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Current_Volume");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var für das aktuelle Volumen in %
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Current_Volume_Percent");
-			SetValue($eid, 0);
-						
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des höchsten Level-Werts
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_UpperBoundary");
-			SetValue($eid, 60);
-
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des niedrigsten Level-Werts
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_LowerBoundary");
-			SetValue($eid, 40);
-
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch aktuelles Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Year1");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Current_Volume_Percent", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var für das aktuelle Volumen in %
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Current_Volume_Percent");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch letztes Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Year2");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_UpperBoundary", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des höchsten Level-Werts
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_UpperBoundary");
+				SetValue($eid, 60);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Year3");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_LowerBoundary", $this->InstanceID ) === false) {	
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des niedrigsten Level-Werts
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_LowerBoundary");
+				SetValue($eid, 40);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch aktuelles Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Year1_Liter");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Year1", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch aktuelles Jahr
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Year1");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch letztes Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Year2_Liter");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Year2", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch letztes Jahr
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Year2");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_Year3_Liter");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Year3", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Year3");
+				SetValue($eid, 0);
+			}
 			
-			/*
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des Jahres bei der letzten Änderung
-			IPS_SetParent($eid, $this->InstanceID );         									// dient dazu den Jahreswechsel zu erkennen
-			IPS_SetName($eid, "Watertank_Extension_Year_Last_Change");
-			SetValue($eid, 0);
-			*/
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Year1_Liter", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch aktuelles Jahr
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Year1_Liter");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(3);                  										// Neue Var zum speichern des HTML Codes
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_HTML");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Year2_Liter", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch letztes Jahr
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Year2_Liter");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des aktuellen Jahres
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_actual_Year");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_Year3_Liter", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_Year3_Liter");
+				SetValue($eid, 0);
+			}
 			
-			$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern der Volumenänderung wenn kleiner MinChangeValue
-			IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
-			IPS_SetName($eid, "Watertank_Extension_change_save");
-			SetValue($eid, 0);
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_HTML", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(3);                  										// Neue Var zum speichern des HTML Codes
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_HTML");
+				SetValue($eid, 0);
+			}
+			
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_actual_Year", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des aktuellen Jahres
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_actual_Year");
+				SetValue($eid, 0);
+			}
+			
+			if (@IPS_GetObjectIDByName ("Watertank_Extension_change_save", $this->InstanceID ) === false) {
+				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern der Volumenänderung wenn kleiner MinChangeValue
+				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
+				IPS_SetName($eid, "Watertank_Extension_change_save");
+				SetValue($eid, 0);
+			}
 			
 			
         }
@@ -199,7 +214,9 @@ IPS_LogMessage("Watertank_Extension","IPS[OLDVALUE]: ".$_IPS['OLDVALUE']);
 				
 				if (($_IPS['OLDVALUE']-($this->ReadPropertyInteger("MinChangeValue")-1)+GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_change_save", $this->InstanceID)) > $_IPS['VALUE'] )) {
 					SetValue(IPS_GetObjectIDByName ( "Watertank_Extension_Year1", $this->InstanceID ),
-						GetValue(IPS_GetObjectIDByName( "Watertank_Extension_Year1", $this->InstanceID )) +	( $_IPS['OLDVALUE'] - $_IPS['VALUE'] ) );
+						GetValue(IPS_GetObjectIDByName( "Watertank_Extension_Year1", $this->InstanceID )) +	( $_IPS['OLDVALUE'] - $_IPS['VALUE'] + GetValueInteger(IPS_GetObjectIDByName("Watertank_Extension_change_save", $this->InstanceID)) ));
+						SetValue(IPS_GetObjectIDByName("Watertank_Extension_change_save", $this->InstanceID),0);
+						
 				} else {
 					// veränderung ist kleiner als der MinChangeValue, dann Wert sichern - ODER Volumen hat zugenommen
 					if ($_IPS['OLDVALUE'] < $_IPS['VALUE']) {
