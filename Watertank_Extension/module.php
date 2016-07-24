@@ -43,6 +43,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des höchsten Level-Werts
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_UpperBoundary");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 60);
 			}
 			
@@ -50,6 +51,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des niedrigsten Level-Werts
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_LowerBoundary");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 40);
 			}
 			
@@ -57,6 +59,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch aktuelles Jahr
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_Year1");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 0);
 			}
 			
@@ -64,6 +67,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch letztes Jahr
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_Year2");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 0);
 			}
 			
@@ -71,6 +75,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern Wasserverbrauch vorletztes Jahr
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_Year3");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 0);
 			}
 			
@@ -106,6 +111,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern des aktuellen Jahres
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_actual_Year");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 0);
 			}
 			
@@ -113,6 +119,7 @@
 				$eid = IPS_CreateVariable(1);                  										// Neue Var zum speichern der Volumenänderung wenn kleiner MinChangeValue
 				IPS_SetParent($eid, $this->InstanceID );         									// Var zuordnen
 				IPS_SetName($eid, "Watertank_Extension_change_save");
+				IPS_SetHidden($eid, true);
 				SetValue($eid, 0);
 			}
 			
