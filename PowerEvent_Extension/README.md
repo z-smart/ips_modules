@@ -28,4 +28,6 @@ Die Module können dann wie IP-Symcon eigene Module hinzugefügt werden.
 ## 4. Changelog
 Version 1.0:
   - erste stable Version mit korrekter Funktion
+Version 1.1:
+  - Fehler bei der Variablen Deklaration behoben
   
