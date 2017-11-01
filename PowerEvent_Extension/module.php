@@ -27,14 +27,14 @@
 			
 			
 			$this->RegisterPropertyString("MsgState1", "Zustand 1 erreicht");
-			$this->RegisterPropertyInteger("EmailState1", 0);
-			$this->RegisterPropertyInteger("PushState1", 0);
-			$this->RegisterPropertyInteger("ScriptState1", 0);
+			$this->RegisterPropertyBoolean("EmailState1", 0);
+			$this->RegisterPropertyBoolean("PushState1", 0);
+			$this->RegisterPropertyBoolean("ScriptState1", 0);
  
 			$this->RegisterPropertyString("MsgState2", "Zustand 2 erreicht");
-			$this->RegisterPropertyInteger("EmailState2", 0);
-			$this->RegisterPropertyInteger("PushState2", 0);
-			$this->RegisterPropertyInteger("ScriptState2", 0);
+			$this->RegisterPropertyBoolean("EmailState2", 0);
+			$this->RegisterPropertyBoolean("PushState2", 0);
+			$this->RegisterPropertyBoolean("ScriptState2", 0);
  			
 			$this->RegisterPropertyInteger("WebFrontInstanceID", 0); 
 			$this->RegisterPropertyInteger("SmtpInstanceID", 0); 
