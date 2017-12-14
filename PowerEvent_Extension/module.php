@@ -29,11 +29,13 @@
 			$this->RegisterPropertyString("MsgState1", "Zustand 1 erreicht");
 			$this->RegisterPropertyBoolean("EmailState1", 0);
 			$this->RegisterPropertyBoolean("PushState1", 0);
+			$this->RegisterPropertyString ("PushMsgSound1", "alarm" );
 			$this->RegisterPropertyBoolean("ScriptState1", 0);
  
 			$this->RegisterPropertyString("MsgState2", "Zustand 2 erreicht");
 			$this->RegisterPropertyBoolean("EmailState2", 0);
 			$this->RegisterPropertyBoolean("PushState2", 0);
+			$this->RegisterPropertyString ("PushMsgSound2", "alarm" );
 			$this->RegisterPropertyBoolean("ScriptState2", 0);
  			
 			$this->RegisterPropertyInteger("WebFrontInstanceID", 0); 
@@ -135,21 +137,7 @@
 						$this->Notify();
 												
 					}	else {
-						// Timer auf entsprechende Zeit setzen und aktivieren
-						
-						/* Alte Timer implementation
-						
-						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
-												
-						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
-						
-						IPS_SetEventCyclicTimeFrom($timerId, $spaeter["hours"], $spaeter["minutes"], $spaeter["seconds"]);
-												
-						IPS_SetEventLimit($timerId, 1);
-						IPS_SetEventActive($timerId, true);
-						
-						*/
-						
+						// Timer auf entsprechende Intervall setzen
 						$this->SetTimerInterval("NotifyTimer", $this->ReadPropertyInteger("StandstillTimer")*60*1000);
 						
 					}
@@ -168,20 +156,7 @@
 						$this->Notify();
 												
 					}	else {
-						// Timer auf entsprechende Zeit setzen und aktivieren
-						
-						/* Alte Timer implementation
-						
-						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
-						
-						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
-						
-						IPS_SetEventCyclicTimeFrom($timerId, $spaeter["hours"], $spaeter["minutes"], $spaeter["seconds"]);
-												
-						IPS_SetEventLimit($timerId, 1);
-						IPS_SetEventActive($timerId, true);
-						*/
-						
+						// Timer auf entsprechende Intervall setzen
 						$this->SetTimerInterval("NotifyTimer", $this->ReadPropertyInteger("StandstillTimer")*60*1000);
 						
 					}
@@ -193,7 +168,7 @@
 		
 		public function Notify() {
             
-			// alten TimerINtervall auf 0 setzen, so dass der Timer, bzw. der Notify auch wirklich nur einmal verschickt wird. Dabei spielt es keine Rolle ob der Notify direkt ausgelöst wurde oder per Timer
+			// alten TimerIntervall auf 0 setzen, so dass der Timer, bzw. der Notify auch wirklich nur einmal verschickt wird. Dabei spielt es keine Rolle ob der Notify direkt ausgelöst wurde oder per Timer
 			$this->SetTimerInterval("NotifyTimer", 0);
 			
 			// Werte ermitteln
@@ -212,12 +187,13 @@
 			if ($LastState != $LastStateNotified) {
 				
 				// Push-Msg verschicken
+				$Sound = $this->ReadPropertyString("PushMsgSound".$LastState)
 				if ($this->ReadPropertyBoolean("PushState".$LastState) == true)
 				{
 						$WFinstanzID = $this->ReadPropertyInteger("WebFrontInstanceID");
 						if (($WFinstanzID != "") && (@IPS_InstanceExists($WFinstanzID) == true))
 						{
-								WFC_PushNotification($WFinstanzID, "PowerEvent_Extension", $Message, "happy", 0);
+								WFC_PushNotification($WFinstanzID, "PowerEvent_Extension", $Message, $Sound, 0);
 						}
 				}
 			
