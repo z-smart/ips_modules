@@ -144,7 +144,8 @@
 						// Timer auf entsprechende Zeit setzen und aktivieren
 						echo 'eigene Instanz-ID: '.$this->InstanceID;
 						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
-												
+						echo $timerId;
+						
 						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
 						
 						IPS_SetEventCyclicTimeFrom($timerId, $spaeter["hours"], $spaeter["minutes"], $spaeter["seconds"]);
