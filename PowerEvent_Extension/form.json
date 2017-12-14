@@ -13,7 +13,7 @@
 		{ "type": "ValidationTextBox", "name": "MsgState1", "caption": "Nachricht Zustand 1" },
 		{ "type": "CheckBox", "name": "EmailState1", "caption": "Zustand 1 per E-Mail melden" },
 		{ "type": "CheckBox", "name": "PushState1", "caption": "Zustand 1 per Push-Nachricht melden" },
-		{ "type": "Select", "name": "PushMsgSound1", "caption": "Push-Nachricht 1 Sound",
+		{ "type": "Select", "name": "PushMsgSound1", "caption": "Push 1 Sound",
 			"options": [
 				{ "label": "alarm", "value": "alarm" },
 				{ "label": "bell", "value": "bell" },
@@ -40,7 +40,7 @@
 		{ "type": "ValidationTextBox", "name": "MsgState2", "caption": "Nachricht Zustand 2" },
 		{ "type": "CheckBox", "name": "EmailState2", "caption": "Zustand 2 per E-Mail melden" },
 		{ "type": "CheckBox", "name": "PushState2", "caption": "Zustand 2 per Push-Nachricht melden" },
-		{ "type": "Select", "name": "PushMsgSound2", "caption": "Push-Nachricht 2 Sound",
+		{ "type": "Select", "name": "PushMsgSound2", "caption": "Push 2 Sound",
 			"options": [
 				{ "label": "alarm", "value": "alarm" },
 				{ "label": "bell", "value": "bell" },

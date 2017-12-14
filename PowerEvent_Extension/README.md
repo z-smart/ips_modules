@@ -30,4 +30,7 @@ Version 1.0:
   - erste stable Version mit korrekter Funktion
 Version 1.1:
   - Fehler bei der Variablen Deklaration behoben
+Version 1.2:
+  - Timer Implementierung korrigiert
+  - Sound-Auswahl für Push-Nachrichten hinzugefügt
   
