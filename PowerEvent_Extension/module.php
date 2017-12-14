@@ -41,13 +41,7 @@
 			$this->RegisterPropertyInteger("ScriptID", 0); 
 
 			// Timer registrieren
-			$this->RegisterTimer("PowerEvent_Extension_NotifyTimer", 0, "PowerEvent_Notify(".$this->InstanceID.");");
-			// TEST-Timer
-			$this->RegisterTimer("Update", 5000, "echo 'Hallo Welt';");
-			
-			// Alte Zustands-Vars um festzustellen wann eine Änderung statt findet
-			$this->RegisterPropertyInteger("LastState", 0);
-			$this->RegisterPropertyInteger("LastStateChange", 0);
+			$this->RegisterTimer("NotifyTimer", 0, "PowerEvent_Notify(".$this->InstanceID.");");
 			
 			// Zustands Vars anlegen, wenn nicht bereits vorhanden
 			if (@IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ) === false) {
@@ -142,16 +136,21 @@
 												
 					}	else {
 						// Timer auf entsprechende Zeit setzen und aktivieren
-						echo 'eigene Instanz-ID: '.$this->InstanceID;
-						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
-						echo $timerId;
 						
+						/* Alte Timer implementation
+						
+						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
+												
 						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
 						
 						IPS_SetEventCyclicTimeFrom($timerId, $spaeter["hours"], $spaeter["minutes"], $spaeter["seconds"]);
 												
 						IPS_SetEventLimit($timerId, 1);
 						IPS_SetEventActive($timerId, true);
+						
+						*/
+						
+						$this->SetTimerInterval("NotifyTimer", $this->ReadPropertyInteger("StandstillTimer")*60*1000);
 						
 					}
 					
@@ -170,6 +169,9 @@
 												
 					}	else {
 						// Timer auf entsprechende Zeit setzen und aktivieren
+						
+						/* Alte Timer implementation
+						
 						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
 						
 						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
@@ -178,6 +180,9 @@
 												
 						IPS_SetEventLimit($timerId, 1);
 						IPS_SetEventActive($timerId, true);
+						*/
+						
+						$this->SetTimerInterval("NotifyTimer", $this->ReadPropertyInteger("StandstillTimer")*60*1000);
 						
 					}
 				}
@@ -188,6 +193,8 @@
 		
 		public function Notify() {
             
+			// alten TimerINtervall auf 0 setzen, so dass der Timer, bzw. der Notify auch wirklich nur einmal verschickt wird. Dabei spielt es keine Rolle ob der Notify direkt ausgelöst wurde oder per Timer
+			$this->SetTimerInterval("NotifyTimer", 0);
 			
 			// Werte ermitteln
 			$LastState = GetValueInteger(IPS_GetObjectIDByName ("PowerEvent_Extension_LastState", $this->InstanceID ));
