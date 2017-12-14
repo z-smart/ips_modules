@@ -187,7 +187,7 @@
 			if ($LastState != $LastStateNotified) {
 				
 				// Push-Msg verschicken
-				$Sound = $this->ReadPropertyString("PushMsgSound".$LastState)
+				$Sound = $this->ReadPropertyString("PushMsgSound".$LastState);
 				if ($this->ReadPropertyBoolean("PushState".$LastState) == true)
 				{
 						$WFinstanzID = $this->ReadPropertyInteger("WebFrontInstanceID");
