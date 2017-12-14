@@ -42,6 +42,8 @@
 
 			// Timer registrieren
 			$this->RegisterTimer("PowerEvent_Extension_NotifyTimer", 0, "PowerEvent_Notify(".$this->InstanceID.");");
+			// TEST-Timer
+			$this->RegisterTimer("Update", 5000, "echo 'Hallo Welt';");
 			
 			// Alte Zustands-Vars um festzustellen wann eine Änderung statt findet
 			$this->RegisterPropertyInteger("LastState", 0);
@@ -141,6 +143,7 @@
 					}	else {
 						// Timer auf entsprechende Zeit setzen und aktivieren
 						$timerId = IPS_GetObjectIDByName("PowerEvent_Extension_NotifyTimer", $this->InstanceID );
+						echo 'eigene Instanz-ID: '.$this->InstanceID;
 						
 						$spaeter = getdate(time() + $this->ReadPropertyInteger("StandstillTimer")*60);
 						
