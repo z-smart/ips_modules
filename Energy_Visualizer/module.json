@@ -1,0 +1,13 @@
+{
+	"id": "{E0CED5EF-46CC-D8F7-EF1D-E3965FA8F808}",
+	"name": "EnergyVisualizer",
+	"type": 3,
+	"vendor": "www.mziolek.de",
+	"aliases":
+	[
+	],  
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "EnergyVisualizer"
+}
