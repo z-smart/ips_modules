@@ -2,7 +2,10 @@
 "id": "{F53FF668-2853-48F7-BCCC-E8914EDC36F1}",  
 "author": "Matthias Ziolek",  
 "name": "IP-Symcon Module",  
-"url": "www.mziolek.de",  
+"url": "www.mziolek.de",
+"compatibility": {
+        "version": "5.0"
+    },
 "version": "1.0",  
 "build": 0,  
 "date": 0  
