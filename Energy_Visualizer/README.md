@@ -1,4 +1,4 @@
-### Z-Smart IP-Symcon Energy_Visualizer
+### Z-Smart IP-Symcon EnergyVisualizer
 ---
 
 ## Dokumentation
