@@ -80,7 +80,7 @@
                     $subLinks = IPS_GetChildrenIDs ($value);
 
                     foreach ($subLinks as $key => $object) {
-                      if IPS_LinkExists($object) {
+                      if (IPS_LinkExists($object)) {
                         foreach (IPS_GetLink($object) as $LinkID => $targetID) {
 
                           $varArray = IPS_GetVariable($targetID);
@@ -101,7 +101,7 @@
               $subLinks = IPS_GetChildrenIDs ($completeID);
 
                       foreach ($subLinks as $key => $object) {
-                        if IPS_LinkExists($object) {
+                        if (IPS_LinkExists($object)) {
                           foreach (IPS_GetLink($object) as $LinkID => $targetID) {
 
                             $varArray = IPS_GetVariable($targetID);
