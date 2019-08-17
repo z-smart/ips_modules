@@ -85,7 +85,7 @@
 
                           $varArray = IPS_GetVariable($targetID);
 
-                          if !($varArray['VariableType'] == 2 && AC_GetAggregationType(integer $InstanzID, $targetID) == 1) $error = 203;
+                          if (!($varArray['VariableType'] == 2 && AC_GetAggregationType(integer $InstanzID, $targetID) == 1)) $error = 203;
 
                         }
                       } else $error = 201;
