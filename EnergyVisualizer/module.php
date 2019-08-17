@@ -83,14 +83,11 @@
 
                     foreach ($subLinks as $key => $object) {
                       if (IPS_LinkExists($object)) {
-                        foreach (IPS_GetLink($object) as $LinkID => $TargetID) {
-                          print_r(IPS_GetLink($object));
-                          print("Target: ".$TargetID);
+                          $TargetID = IPS_GetLink($object)['TargetID'];
                           $varArray = IPS_GetVariable($TargetID);
 
                           if (!($varArray['VariableType'] == 2 && AC_GetAggregationType($this->ReadPropertyInteger("ArchiveHandlerID"), $TargetID) == 1)) $error = 203;
 
-                        }
                       } else $error = 201;
                     }
                 } else $error = 201;
@@ -105,13 +102,11 @@
 
                       foreach ($subLinks as $key => $object) {
                         if (IPS_LinkExists($object)) {
-                          foreach (IPS_GetLink($object) as $LinkID => $TargetID) {
-
+                            $TargetID = IPS_GetLink($object)['TargetID'];
                             $varArray = IPS_GetVariable($TargetID);
 
                             if (!($varArray['VariableType'] == 2 && AC_GetAggregationType($this->ReadPropertyInteger("ArchiveHandlerID"), $TargetID) == 1)) $error = 202;
 
-                          }
                         } else $error = 202;
                       }
 
