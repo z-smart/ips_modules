@@ -63,7 +63,7 @@
 
             $this->setStatus(102);
 
-            $this->setStatus(CheckVars());
+            $this->setStatus(EnergyVisualizer_CheckVars($this->InstanceID));
 
         }
 
@@ -115,7 +115,6 @@
                       }
 
             }
-
 
 
         return($error);
