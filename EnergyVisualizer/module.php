@@ -27,17 +27,17 @@
               // Subkategorien anlegen
               $subeid = IPS_CreateCategory();
       				IPS_SetParent($subeid, $eid );
-      				IPS_SetName($eid, "Licht");
+      				IPS_SetName($subeid, "Licht");
 
               // Subkategorien anlegen
               $subeid = IPS_CreateCategory();
               IPS_SetParent($subeid, $eid );
-              IPS_SetName($eid, "Heizung");
+              IPS_SetName($subeid, "Heizung");
 
               // Subkategorien anlegen
               $subeid = IPS_CreateCategory();
       				IPS_SetParent($subeid, $eid );
-      				IPS_SetName($eid, "Sonstiges");
+      				IPS_SetName($subeid, "Sonstiges");
 
       			}
 
