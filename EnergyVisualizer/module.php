@@ -96,7 +96,7 @@
             }
 
             // Wenn der Gesamtverbrauch nicht berechnet wird, dann prüfen ob gültige LInks zum auslesen vorhanden sind
-            if !($this->ReadPropertyBoolean("AutoCalcComplete")) {
+            if (!($this->ReadPropertyBoolean("AutoCalcComplete"))) {
 
               $completeID = IPS_GetCategoryIDByName ("Complete", $this->InstanceID );
 
