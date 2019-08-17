@@ -9,17 +9,13 @@
 	],
 	"actions":
 	[
-		{ "type": "Button", "label": "Update", "onClick": "PowerEvent_Update($id);" },
-		{ "type": "Button", "label": "Test-Benachrichtigung", "onClick": "PowerEvent_Notify($id);" }
+		{ "type": "Button", "label": "Variabeln prüfen", "onClick": "EnergyVisualizer_CheckVars($id);" }
 	],
 	"status":
 	[
-        { "code": 102, "icon": "active", "caption": "PowerEvent_Extension ist aktiv" },
-		{ "code": 201, "icon": "error", "caption": "FEHLER - Für Push Nachrichten muss eine WebFront-Instanz ausgewählt werden!" },
-        { "code": 202, "icon": "error", "caption": "FEHLER - Für E-Mail Nachrichten muss eine E-Mail-Instanz ausgewählt werden!" },
-        { "code": 203, "icon": "error", "caption": "FEHLER - Für eine eigene Aktion muss ein Skript ausgewählt werden!" },
-		{ "code": 210, "icon": "error", "caption": "FEHLER - Milliampere Grenze muß größer 0 und kleiner 16000 sein!" },
-		{ "code": 211, "icon": "error", "caption": "FEHLER - Mindestverweildauer muss zwischen 0 und 10 Minuten liegen!" },
-		{ "code": 220, "icon": "error", "caption": "FEHLER - Keine zu überwachende mA Variabel ausgewählt!" }
+    { "code": 102, "icon": "active", "caption": "EnergyVisualizer ist aktiv" },
+		{ "code": 201, "icon": "error", "caption": "FEHLER - Kategorien-Links fehlerhaft. Bitte prüfen." },
+    { "code": 202, "icon": "error", "caption": "FEHLER - Gesamtenergie-Zähler Links fehlerhaft. Bitte prüfen." },
+    { "code": 203, "icon": "error", "caption": "FEHLER - Nicht alle Variabeln haben die korrekten Typ und/oder Aggregationsart. Bitte auf 'Float' und 'Zähler' ändern." }
 	]
 }
