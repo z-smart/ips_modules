@@ -85,7 +85,7 @@
                       if (IPS_LinkExists($object)) {
                         foreach (IPS_GetLink($object) as $LinkID => $targetID) {
 
-                          print_r(IPS_GetLink($object));
+                          print($targetID);
                           $varArray = IPS_GetVariable($targetID);
 
                           if (!($varArray['VariableType'] == 2 && AC_GetAggregationType($this->ReadPropertyInteger("ArchiveHandlerID"), $targetID) == 1)) $error = 203;
