@@ -71,15 +71,15 @@
         public function CheckVars() {
             $error = 102;
             // Alle Kategorien durchgehen und Vars Prüfen
-            $catID = IPS_GetCategoryIDByName ("Categories", $this->InstanceID );
+            $catID = IPS_GetCategoryIDByName("Categories", $this->InstanceID );
 
-            $subCats = IPS_GetChildrenIDs ($catID);
+            $subCats = IPS_GetChildrenIDs($catID);
 
             foreach ($subCats as $key => $value) {
                 if (IPS_CategoryExists($value)) {
                   // es handelt sich um eine Kategorie, also nach Links suchen
 
-                    $subLinks = IPS_GetChildrenIDs ($value);
+                    $subLinks = IPS_GetChildrenIDs($value);
 
                     foreach ($subLinks as $key => $object) {
                       if (IPS_LinkExists($object)) {
@@ -98,9 +98,9 @@
             // Wenn der Gesamtverbrauch nicht berechnet wird, dann prüfen ob gültige LInks zum auslesen vorhanden sind
             if (!($this->ReadPropertyBoolean("AutoCalcComplete"))) {
 
-              $completeID = IPS_GetCategoryIDByName ("Complete", $this->InstanceID );
+              $completeID = IPS_GetCategoryIDByName("Complete", $this->InstanceID );
 
-              $subLinks = IPS_GetChildrenIDs ($completeID);
+              $subLinks = IPS_GetChildrenIDs($completeID);
 
                       foreach ($subLinks as $key => $object) {
                         if (IPS_LinkExists($object)) {
