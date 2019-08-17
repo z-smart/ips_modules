@@ -84,7 +84,7 @@
                     foreach ($subLinks as $key => $object) {
                       if (IPS_LinkExists($object)) {
                         foreach (IPS_GetLink($object) as $LinkID => $TargetID) {
-
+                          print_r($object);
                           print("Target: ".$TargetID);
                           $varArray = IPS_GetVariable($TargetID);
 
