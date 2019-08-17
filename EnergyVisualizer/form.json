@@ -10,7 +10,7 @@
 	],
 	"actions":
 	[
-		{ "type": "Button", "label": "Variabeln prüfen", "onClick": "EnergyVisualizer_CheckVars($id);" }
+
 	],
 	"status":
 	[
