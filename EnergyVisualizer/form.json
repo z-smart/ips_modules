@@ -3,6 +3,7 @@
 	[
 		{ "type": "Label", "label": "EnergyVisualizer" },
 		{ "type": "Label", "label": "=======================================================================" },
+		{ "type": "SelectObject", "name": "ArchiveID", "caption": "Hier bitte Archive Handler auswählen" },
 		{ "type": "Label", "label": "Bitte legen Sie unter der Kategorie 'Categories' einfach weitere Kategorien an. In diesen erzeugen Sie dann Links auf die jeweiligen 'Float-Variabeln' der Energiezähler." },
 		{ "type": "Label", "label": "Wenn Sie keine Variabel für einen Gesamt-Energiezähler haben, können Sie hier die automatische Summierung der Einzelkategorien aktivieren. Andernfalls müssen Sie in der Kategorie 'Complete' Links auf die Gesamt-Energiezähler hinzufügen." },
 		{ "type": "CheckBox", "name": "AutoCalcComplete", "caption": "Gesamtenergie automatisch berechnen?" }

@@ -50,6 +50,8 @@
             // Var anlegen für AutoCalcComplete
             $this->RegisterPropertyBoolean("AutoCalcComplete", 0);
 
+            // Var anlegen für ArchiveHandlerID
+            $this->RegisterPropertyInteger("ArchiveHandlerID", 0);
 
 
         }
@@ -106,7 +108,7 @@
 
                             $varArray = IPS_GetVariable($targetID);
 
-                            if !($varArray['VariableType'] == 2 && AC_GetAggregationType(integer $InstanzID, $targetID) == 1) $error = 202;
+                            if !($varArray['VariableType'] == 2 && AC_GetAggregationType($this->ReadPropertyInteger("ArchiveHandlerID"), $targetID) == 1) $error = 202;
 
                           }
                         } else $error = 202;
