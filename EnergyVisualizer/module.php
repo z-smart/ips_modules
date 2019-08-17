@@ -74,7 +74,7 @@
             $subCats = IPS_GetChildrenIDs ($catID);
 
             foreach ($subCats as $key => $value) {
-                if IPS_CategoryExists($value) {
+                if (IPS_CategoryExists($value)) {
                   // es handelt sich um eine Kategorie, also nach Links suchen
 
                     $subLinks = IPS_GetChildrenIDs ($value);
